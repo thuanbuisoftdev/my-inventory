@@ -1,0 +1,44 @@
+Name:                   my-app-deployment
+Namespace:              my-app
+CreationTimestamp:      Wed, 05 Mar 2025 14:50:12 +0700
+Labels:                 app=my-app
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=my-app
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+  Labels:  app=my-app
+  Containers:
+   my-appnginx-container:
+    Image:      nginx:latest
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:     500m
+      memory:  256Mi
+    Requests:
+      cpu:        250m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/log/nginx from log-volume (rw)
+  Volumes:
+   log-volume:
+    Type:          EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:        
+    SizeLimit:     <unset>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   my-app-deployment-788d46b987 (3/3 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  108s  deployment-controller  Scaled up replica set my-app-deployment-788d46b987 from 0 to 3

@@ -1,0 +1,43 @@
+GROUP:      networking.k8s.io
+KIND:       NetworkPolicy
+VERSION:    v1
+
+FIELD: from <[]NetworkPolicyPeer>
+
+
+DESCRIPTION:
+    from is a list of sources which should be able to access the pods selected
+    for this rule. Items in this list are combined using a logical OR operation.
+    If this field is empty or missing, this rule matches all sources (traffic
+    not restricted by source). If this field is present and contains at least
+    one item, this rule allows traffic only if the traffic matches at least one
+    item in the from list.
+    NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain
+    combinations of fields are allowed
+    
+FIELDS:
+  ipBlock	<IPBlock>
+    ipBlock defines policy on a particular IPBlock. If this field is set then
+    neither of the other fields can be.
+
+  namespaceSelector	<LabelSelector>
+    namespaceSelector selects namespaces using cluster-scoped labels. This field
+    follows standard label selector semantics; if present but empty, it selects
+    all namespaces.
+    
+    If podSelector is also set, then the NetworkPolicyPeer as a whole selects
+    the pods matching podSelector in the namespaces selected by
+    namespaceSelector. Otherwise it selects all pods in the namespaces selected
+    by namespaceSelector.
+
+  podSelector	<LabelSelector>
+    podSelector is a label selector which selects pods. This field follows
+    standard label selector semantics; if present but empty, it selects all
+    pods.
+    
+    If namespaceSelector is also set, then the NetworkPolicyPeer as a whole
+    selects the pods matching podSelector in the Namespaces selected by
+    NamespaceSelector. Otherwise it selects the pods matching podSelector in the
+    policy's own namespace.
+
+

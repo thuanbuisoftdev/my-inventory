@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  namespace: my-app
+  name: my-app-replicaset
+  labels:
+    name: my-app
+
+spec:
+  selector:
+    matchLabels:
+      name: my-app
+
+  replicas: 3
+
+  template:
+    metadata:
+      name: my-app-pod
+      labels:
+        name: my-app
+    
+    spec:
+      containers:
+        - name: my-app-nginx-container
+          image: nginx:latest
+          ports:
+            - name: www
+              containerPort: 80

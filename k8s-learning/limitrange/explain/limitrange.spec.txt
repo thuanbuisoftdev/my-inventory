@@ -1,0 +1,17 @@
+KIND:       LimitRange
+VERSION:    v1
+
+FIELD: spec <LimitRangeSpec>
+
+
+DESCRIPTION:
+    Spec defines the limits enforced. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+    LimitRangeSpec defines a min/max usage limit for resources that match on
+    kind.
+    
+FIELDS:
+  limits	<[]LimitRangeItem> -required-
+    Limits is the list of LimitRangeItem objects that are enforced.
+
+

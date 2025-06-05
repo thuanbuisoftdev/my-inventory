@@ -1,0 +1,17 @@
+[project]
+name = "hello-world"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.11",
+    "langchain>=0.3.20",
+    "langchain-community>=0.3.19",
+    "langchain-groq>=0.2.5",
+    "langchain-openai>=0.3.8",
+    "openai>=1.65.4",
+    "requests>=2.32.3",
+    "ruff>=0.9.10",
+    "uvicorn>=0.34.0",
+]

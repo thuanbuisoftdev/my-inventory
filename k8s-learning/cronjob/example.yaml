@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+
+metadata:
+  namespace: my-app
+  name: my-app-cronjob
+
+spec:
+  schedule: "*/1 * * * *"
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: my-app-cronjob-container
+              image: busybox
+              command: ["echo", "Hello from CronJob"]

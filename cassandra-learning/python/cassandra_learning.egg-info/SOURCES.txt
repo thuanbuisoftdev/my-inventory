@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+cassandra_learning.egg-info/PKG-INFO
+cassandra_learning.egg-info/SOURCES.txt
+cassandra_learning.egg-info/dependency_links.txt
+cassandra_learning.egg-info/requires.txt
+cassandra_learning.egg-info/top_level.txt

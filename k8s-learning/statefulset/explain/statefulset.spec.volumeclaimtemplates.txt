@@ -1,0 +1,45 @@
+GROUP:      apps
+KIND:       StatefulSet
+VERSION:    v1
+
+FIELD: volumeClaimTemplates <[]PersistentVolumeClaim>
+
+
+DESCRIPTION:
+    volumeClaimTemplates is a list of claims that pods are allowed to reference.
+    The StatefulSet controller is responsible for mapping network identities to
+    claims in a way that maintains the identity of a pod. Every claim in this
+    list must have at least one matching (by name) volumeMount in one container
+    in the template. A claim in this list takes precedence over any volumes in
+    the template, with the same name.
+    PersistentVolumeClaim is a user's request for and claim to a persistent
+    volume
+    
+FIELDS:
+  apiVersion	<string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+  kind	<string>
+    Kind is a string value representing the REST resource this object
+    represents. Servers may infer this from the endpoint the client submits
+    requests to. Cannot be updated. In CamelCase. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  metadata	<ObjectMeta>
+    Standard object's metadata. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+  spec	<PersistentVolumeClaimSpec>
+    spec defines the desired characteristics of a volume requested by a pod
+    author. More info:
+    https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+  status	<PersistentVolumeClaimStatus>
+    status represents the current information/status of a persistent volume
+    claim. Read-only. More info:
+    https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+

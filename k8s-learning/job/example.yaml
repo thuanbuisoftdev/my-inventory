@@ -1,0 +1,23 @@
+apiVersion: batch/v1  
+kind: Job  
+
+metadata:
+  namespace: my-app
+  name: my-app-job  
+  labels:
+    name: my-app  
+
+spec:
+  completions: 10
+  parallelism: 1 
+  template:
+    metadata:
+      labels:
+        name: my-app
+    spec:
+      restartPolicy: Never  
+      containers:
+        - name: my-job-container
+          image: busybox:latest  
+          command: ["echo", "Hello World"]
+        

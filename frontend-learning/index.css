@@ -1,0 +1,153 @@
+/* Base styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--primary-color);
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Grid layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.grid-item {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 4px;
+    color: white;
+}
+
+/* Flexbox layout */
+.flex-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.flex-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Animation example */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+section {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}

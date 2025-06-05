@@ -1,0 +1,36 @@
+KIND:       LimitRange
+VERSION:    v1
+
+FIELD: limits <[]LimitRangeItem>
+
+
+DESCRIPTION:
+    Limits is the list of LimitRangeItem objects that are enforced.
+    LimitRangeItem defines a min/max usage limit for any resource that matches
+    on kind.
+    
+FIELDS:
+  default	<map[string]Quantity>
+    Default resource requirement limit value by resource name if resource limit
+    is omitted.
+
+  defaultRequest	<map[string]Quantity>
+    DefaultRequest is the default resource requirement request value by resource
+    name if resource request is omitted.
+
+  max	<map[string]Quantity>
+    Max usage constraints on this kind by resource name.
+
+  maxLimitRequestRatio	<map[string]Quantity>
+    MaxLimitRequestRatio if specified, the named resource must have a request
+    and limit that are both non-zero where limit divided by request is less than
+    or equal to the enumerated value; this represents the max burst for the
+    named resource.
+
+  min	<map[string]Quantity>
+    Min usage constraints on this kind by resource name.
+
+  type	<string> -required-
+    Type of resource that this limit applies to.
+
+

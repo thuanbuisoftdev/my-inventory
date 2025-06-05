@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  namespace: my-app
+  name: my-app-deployment
+  labels:
+    name: my-app
+    component: webserver
+
+spec:
+  selector:
+    matchLabels:
+      name: my-app
+      component: webserver
+
+  replicas: 3
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  template:
+    metadata:
+      namespace: my-app
+      name: my-app-pod
+
+      labels:
+        name: my-app
+        component: webserver
+
+    spec:
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "128Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
+
+      volumes:
+        - name: my-app-volume
+          emptyDir:
+            sizeLimit: "100Mi"
+            medium: Memory
+
+      containers:
+        - name: my-app-nginx-container
+          image: nginx:latest
+
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+
+          volumeMounts:
+            - name: my-app-volume
+              mountPath: /tmp/shared_data
+
+          ports:
+            - name: www
+              containerPort: 80

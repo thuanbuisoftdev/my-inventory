@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  namespace: my-app
+  name: my-app-pod
+  labels:
+    name: my-app
+    component: webserver
+
+spec:
+  restartPolicy: Always
+
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "256Mi"
+
+  volumes:
+    - name: my-app-volume
+      emptyDir:
+        sizeLimit: "100Mi"
+        medium: Memory
+
+  containers:
+    - name: my-app-nginx-container
+      image: nginx:latest
+
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "128Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
+      
+      volumeMounts:
+        - name: my-app-volume
+          mountPath: /tmp/shared_data
+
+      ports:
+        - name: www
+          containerPort: 80
+
+    - name: my-app-busybox-container
+      image: busybox:latest
+
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+      
+      volumeMounts:
+        - name: my-app-volume
+          mountPath: /tmp/shared_data
+      
+      command: ["/bin/sh", "-c", "touch /tmp/shared_data/hello_from_busybox_$(date +%Y%m%d_%H%M%S).txt"]

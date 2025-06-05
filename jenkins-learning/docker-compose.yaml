@@ -1,0 +1,29 @@
+services:
+  mailcatcher:
+    image: sj26/mailcatcher
+    container_name: mailcatcher
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    networks:
+      - test
+      
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17  
+    container_name: jenkins
+    restart: unless-stopped
+    volumes:
+      - jenkins_home:/var/jenkins_home  
+    ports:
+      - "8080:8080" 
+      - "50000:50000"
+    networks:
+      - test
+
+volumes:
+  jenkins_home:
+
+networks:
+  test: 
+    driver: bridge

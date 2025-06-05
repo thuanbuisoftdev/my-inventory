@@ -1,0 +1,29 @@
+GROUP:      autoscaling
+KIND:       HorizontalPodAutoscaler
+VERSION:    v2
+
+FIELD: resource <ResourceMetricSource>
+
+
+DESCRIPTION:
+    resource refers to a resource metric (such as those specified in requests
+    and limits) known to Kubernetes describing each pod in the current scale
+    target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and
+    have special scaling options on top of those available to normal per-pod
+    metrics using the "pods" source.
+    ResourceMetricSource indicates how to scale on a resource metric known to
+    Kubernetes, as specified in requests and limits, describing each pod in the
+    current scale target (e.g. CPU or memory).  The values will be averaged
+    together before being compared to the target.  Such metrics are built in to
+    Kubernetes, and have special scaling options on top of those available to
+    normal per-pod metrics using the "pods" source.  Only one "target" type
+    should be set.
+    
+FIELDS:
+  name	<string> -required-
+    name is the name of the resource in question.
+
+  target	<MetricTarget> -required-
+    target specifies the target value for the given metric
+
+

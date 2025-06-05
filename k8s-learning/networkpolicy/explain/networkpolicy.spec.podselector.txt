@@ -1,0 +1,30 @@
+GROUP:      networking.k8s.io
+KIND:       NetworkPolicy
+VERSION:    v1
+
+FIELD: podSelector <LabelSelector>
+
+
+DESCRIPTION:
+    podSelector selects the pods to which this NetworkPolicy object applies. The
+    array of ingress rules is applied to any pods selected by this field.
+    Multiple network policies can select the same set of pods. In this case, the
+    ingress rules for each are combined additively. This field is NOT optional
+    and follows standard label selector semantics. An empty podSelector matches
+    all pods in this namespace.
+    A label selector is a label query over a set of resources. The result of
+    matchLabels and matchExpressions are ANDed. An empty label selector matches
+    all objects. A null label selector matches no objects.
+    
+FIELDS:
+  matchExpressions	<[]LabelSelectorRequirement>
+    matchExpressions is a list of label selector requirements. The requirements
+    are ANDed.
+
+  matchLabels	<map[string]string>
+    matchLabels is a map of {key,value} pairs. A single {key,value} in the
+    matchLabels map is equivalent to an element of matchExpressions, whose key
+    field is "key", the operator is "In", and the values array contains only
+    "value". The requirements are ANDed.
+
+

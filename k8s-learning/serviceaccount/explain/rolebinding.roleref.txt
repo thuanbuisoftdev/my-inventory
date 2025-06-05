@@ -1,0 +1,24 @@
+GROUP:      rbac.authorization.k8s.io
+KIND:       RoleBinding
+VERSION:    v1
+
+FIELD: roleRef <RoleRef>
+
+
+DESCRIPTION:
+    RoleRef can reference a Role in the current namespace or a ClusterRole in
+    the global namespace. If the RoleRef cannot be resolved, the Authorizer must
+    return an error. This field is immutable.
+    RoleRef contains information that points to the role being used
+    
+FIELDS:
+  apiGroup	<string> -required-
+    APIGroup is the group for the resource being referenced
+
+  kind	<string> -required-
+    Kind is the type of resource being referenced
+
+  name	<string> -required-
+    Name is the name of resource being referenced
+
+

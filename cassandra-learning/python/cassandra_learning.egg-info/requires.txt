@@ -1,0 +1,4 @@
+cassandra-driver>=3.29.2
+pydantic>=2.10.6
+ruff>=0.10.0
+sqlalchemy>=2.0.39

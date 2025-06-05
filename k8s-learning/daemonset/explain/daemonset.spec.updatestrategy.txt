@@ -1,0 +1,27 @@
+GROUP:      apps
+KIND:       DaemonSet
+VERSION:    v1
+
+FIELD: updateStrategy <DaemonSetUpdateStrategy>
+
+
+DESCRIPTION:
+    An update strategy to replace existing DaemonSet pods with new pods.
+    DaemonSetUpdateStrategy is a struct used to control the update strategy for
+    a DaemonSet.
+    
+FIELDS:
+  rollingUpdate	<RollingUpdateDaemonSet>
+    Rolling update config params. Present only if type = "RollingUpdate".
+
+  type	<string>
+  enum: OnDelete, RollingUpdate
+    Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is
+    RollingUpdate.
+    
+    Possible enum values:
+     - `"OnDelete"` Replace the old daemons only when it's killed
+     - `"RollingUpdate"` Replace the old daemons by new ones using rolling
+    update i.e replace them on each node one after the other.
+
+

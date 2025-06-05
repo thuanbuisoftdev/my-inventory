@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-app-ns
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: my-app-ns
+  name: my-app-deployment
+spec:
+  selector:
+    matchLabels:
+      name: my-app-pod
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      namespace: my-app-ns
+      name: my-app-pod
+      labels:
+        name: my-app-pod
+    spec:
+      containers:
+        - name: my-app-nginx-container
+          image: nginx
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          ports:
+            - name: www
+              containerPort: 80
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: my-app
+  name: my-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app-deployment
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50

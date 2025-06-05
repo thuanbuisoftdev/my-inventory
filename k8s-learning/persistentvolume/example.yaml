@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  namespace: my-app
+  name: my-app-pv
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  namespace: my-app
+  name: my-app-pvc
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: manual
+
+---
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  namespace: my-app
+  name: my-app-job
+  labels:
+    name: my-app
+
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: my-job-container
+          image: busybox:latest
+          command: ["touch", "/home/busybox/hello.txt"]
+          volumeMounts:
+            - name: my-volume
+              mountPath: /home/busybox
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: my-app-pvc

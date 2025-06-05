@@ -1,0 +1,10 @@
+Metadata-Version: 2.2
+Name: cassandra-learning
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: cassandra-driver>=3.29.2
+Requires-Dist: pydantic>=2.10.6
+Requires-Dist: ruff>=0.10.0
+Requires-Dist: sqlalchemy>=2.0.39
